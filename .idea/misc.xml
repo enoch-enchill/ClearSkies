@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/PSL-SWD18/AndroidStudioProjects/ClearSkies/app/src/main/res/drawable/bg_circle_dark.xml" value="0.23981481481481481" />
+        <entry key="..\:/Users/PSL-SWD18/AndroidStudioProjects/ClearSkies/app/src/main/res/layout/activity_main.xml" value="0.259375" />
+        <entry key="..\:/Users/PSL-SWD18/AndroidStudioProjects/ClearSkies/app/src/main/res/layout/activity_search.xml" value="0.259375" />
+        <entry key="..\:/Users/PSL-SWD18/AndroidStudioProjects/ClearSkies/app/src/main/res/layout/bg_dotted.xml" value="0.19722222222222222" />
+        <entry key="..\:/Users/PSL-SWD18/AndroidStudioProjects/ClearSkies/app/src/main/res/layout/dashboard_forecast.xml" value="0.259375" />
+        <entry key="..\:/Users/PSL-SWD18/AndroidStudioProjects/ClearSkies/app/src/main/res/xml/searchable.xml" value="0.259375" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

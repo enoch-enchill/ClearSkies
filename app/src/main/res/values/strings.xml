@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">ClearSkies</string>
+
+    <string name="search">Search</string>
+    <string name="search_hint">Enter location name</string>
+    <string name="refresh">Refresh</string>
+
+    <string name="today">Today</string>
+    <string name="next_7_days">Next 7 Days</string>
+
+    <string name="weather_icon">weather icon</string>
+
+    <string name="pop_text">PoP</string>
+    <string name="humidity_text">Humidity</string>
 </resources>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/circle_top_right"
+        android:layout_width="134dp"
+        android:layout_height="134dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="-50dp"
+        android:layout_marginEnd="-50dp"
+        android:background="@drawable/bg_circle_light"
+        android:contentDescription="@string/app_name" />
+
+    <ImageView
+        android:id="@+id/circle_top_left"
+        android:layout_width="134dp"
+        android:layout_height="134dp"
+        android:layout_below="@+id/circle_top_right"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="-70dp"
+        android:background="@drawable/bg_circle_light"
+        android:contentDescription="@string/app_name" />
+
+    <ImageView
+        android:id="@+id/circle_bottom_left"
+        android:layout_width="134dp"
+        android:layout_height="134dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="-100dp"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/bg_circle_dark"
+        android:contentDescription="@string/app_name" />
+
+    <ImageView
+        android:id="@+id/circle_bottom_right"
+        android:layout_width="182dp"
+        android:layout_height="182dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="-80dp"
+        android:layout_marginBottom="-30dp"
+        android:background="@drawable/bg_circle_dark"
+        android:contentDescription="@string/app_name" />
+
+    <ImageView
+        android:id="@+id/circle_centre_top"
+        android:layout_width="182dp"
+        android:layout_height="182dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_circle_dark"
+        android:contentDescription="@string/app_name"/>
+
+    <ImageView
+        android:id="@+id/circle_centre_bottom"
+        android:layout_width="134dp"
+        android:layout_height="134dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignTop="@id/circle_bottom_left"
+        android:background="@drawable/bg_circle_light"
+        android:contentDescription="@string/app_name" />
+
+</RelativeLayout>
