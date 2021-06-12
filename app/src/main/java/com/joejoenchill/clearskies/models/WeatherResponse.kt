@@ -8,5 +8,5 @@ data class WeatherResponse(
     @SerializedName("lon") val lon: Double,
     @SerializedName("timezone") val timezone: String,
     @SerializedName("timezone_offset") val timezone_offset: Long,
-    @SerializedName("daily") val daily: List<DailyItem?>? = null,
+    @SerializedName("daily") val daily: List<DailyItem>,
 ): Serializable

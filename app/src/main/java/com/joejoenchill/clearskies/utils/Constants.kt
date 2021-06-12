@@ -6,5 +6,8 @@ class Constants {
         const val UNIT_NAME = "imperial"
         const val EXCLUDE = "current,minutely,hourly,alerts"
         const val CURRENT_WEATHER = "weather"
+
+        const val Accra_LAT = 5.5913754
+        const val Accra_LON = -0.2497702
     }
 }

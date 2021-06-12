@@ -30,44 +30,44 @@
 
 
             <TextView
-                android:id="@+id/txtTimeOfDay"
+                android:id="@+id/txtDailyDayOfWeek"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="24dp"
                 android:textColor="@color/white"
-                android:textSize="11sp"
-                android:textStyle="bold"
-                tools:text="12:00" />
-
-            <TextView
-                android:id="@+id/txtDayOfWeek"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/txtTimeOfDay"
-                android:layout_centerHorizontal="true"
-                android:textColor="@color/white"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 tools:text="Monday"
                 android:transitionName="fade" />
 
-            <ImageView
-                android:id="@+id/imgForecastIcon"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_below="@id/txtDayOfWeek"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="12dp"
-                tools:src="@drawable/ic_splash_big_cloud"
-                android:contentDescription="@string/weather_icon" />
-
             <TextView
-                android:id="@+id/textTemp"
+                android:id="@+id/txtDailyDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/imgForecastIcon"
+                android:layout_below="@id/txtDailyDayOfWeek"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/white"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                tools:text="June 12, 2021" />
+
+            <ImageView
+                android:id="@+id/imgDailyWeatherIcon"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_below="@id/txtDailyDayOfWeek"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="12dp"
+                android:contentDescription="@string/weather_icon"
+                tools:src="@drawable/ic_splash_big_cloud" />
+
+            <TextView
+                android:id="@+id/textDailyTemperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imgDailyWeatherIcon"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="8dp"
                 android:textColor="@color/white"
@@ -76,15 +76,15 @@
                 tools:text="23°"/>
 
             <LinearLayout
-                android:id="@+id/linearLayoutTempMaxMin"
+                android:id="@+id/linearLayoutHumidityPoP"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/textTemp"
+                android:layout_below="@id/textDailyTemperature"
                 android:layout_centerHorizontal="true"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/txtTempMin"
+                    android:id="@+id/txtDailyHumidity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="12dp"
@@ -94,7 +94,7 @@
                     tools:text="24°" />
 
                 <TextView
-                    android:id="@+id/txtTempMax"
+                    android:id="@+id/txtDailyPoP"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
