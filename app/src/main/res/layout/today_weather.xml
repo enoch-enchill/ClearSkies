@@ -9,7 +9,7 @@
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/teal_700"
+        android:backgroundTint="@color/grey_800"
         android:fitsSystemWindows="true"
         android:visibility="visible"
         app:cardCornerRadius="24dp"
@@ -20,6 +20,20 @@
             android:id="@+id/rootView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipToday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="4dp"
+                android:checkable="false"
+                android:checked="true"
+                android:clickable="false"
+                android:text="@string/today"
+                android:textColor="@color/black"
+                app:chipBackgroundColor="@color/white"
+                android:textSize="16sp"/>
 
             <ImageView
                 android:id="@+id/imgWeatherIcon"
@@ -81,7 +95,7 @@
                         android:layout_below="@id/txtHumidityHeader"
                         android:layout_centerHorizontal="true"
                         android:layout_marginBottom="24dp"
-                        android:textColor="@color/whiteWithOpacity"
+                        android:textColor="@color/grey_300"
                         android:textSize="27sp"
                         tools:text="35°" />
                 </RelativeLayout>
@@ -108,7 +122,7 @@
                         android:layout_below="@id/txtPOPHeader"
                         android:layout_centerHorizontal="true"
                         android:layout_marginBottom="24dp"
-                        android:textColor="@color/whiteWithOpacity"
+                        android:textColor="@color/grey_300"
                         android:textSize="27sp"
                         tools:text="35°" />
                 </RelativeLayout>

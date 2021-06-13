@@ -13,6 +13,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -20,6 +21,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.location.LocationManagerCompat
+import androidx.core.text.set
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -50,6 +52,7 @@ class MainActivity : AppCompatActivity(), WeatherContract.View, SharedPreference
     private lateinit var swipeRefresh: SwipeRefreshLayout
     private lateinit var infoNoInternet: MaterialCardView
     private lateinit var txtNoInternet: TextView
+    private lateinit var txtSearch: EditText
 
     private lateinit var presenter: WeatherPresenter
 
@@ -80,6 +83,12 @@ class MainActivity : AppCompatActivity(), WeatherContract.View, SharedPreference
 
         presenter = WeatherPresenter(this)
 
+        swipeRefresh =  findViewById(R.id.swipeRefresh)
+        txtSearch =  findViewById(R.id.txtSearch)
+
+        infoNoInternet = findViewById(R.id.infoNoInternet)
+        txtNoInternet = findViewById(R.id.txtNoInternet)
+
         loadWeatherData()
 
         networkReceiver = NetworkChangeReceiver(this)
@@ -88,10 +97,6 @@ class MainActivity : AppCompatActivity(), WeatherContract.View, SharedPreference
         PreferenceManager.getDefaultSharedPreferences(this)
             .registerOnSharedPreferenceChangeListener(this)
 
-        swipeRefresh =  findViewById(R.id.swipeRefresh)
-
-        infoNoInternet = findViewById(R.id.infoNoInternet)
-        txtNoInternet = findViewById(R.id.txtNoInternet)
 
         /*
          * Sets up a SwipeRefreshLayout.OnRefreshListener that is invoked when the user
@@ -114,7 +119,7 @@ class MainActivity : AppCompatActivity(), WeatherContract.View, SharedPreference
                 presenter.startLoadingData(lat, lon)
             }else{
                 // User refused permission, Accra is added as a default
-                presenter.startLoadingData(Constants.Accra_LAT, Constants.Accra_LON)
+                seDefaultLocation()
             }
         }else{
             Toast.makeText(this, "No Internet connection", Toast.LENGTH_LONG).show()
@@ -169,12 +174,6 @@ class MainActivity : AppCompatActivity(), WeatherContract.View, SharedPreference
             recyclerView.layoutManager = horizontalLayoutManager
             recyclerView.setHasFixedSize(true)
 
-            val dividerItemDecoration = DividerItemDecoration(
-                recyclerView.context,
-                horizontalLayoutManager.orientation
-            )
-            recyclerView.addItemDecoration(dividerItemDecoration)
-
             val dailyWeather: List<DailyItem> = weatherResponse.daily.drop(1)
             val dailyWeatherAdapter = DailyAdapter(dailyWeather, this)
             recyclerView.adapter = dailyWeatherAdapter
@@ -225,7 +224,7 @@ class MainActivity : AppCompatActivity(), WeatherContract.View, SharedPreference
             presenter.startLoadingData(lat, lon)
         }else{
             // No location available, Accra is added as a default
-            presenter.startLoadingData(Constants.Accra_LAT, Constants.Accra_LON)
+            seDefaultLocation()
         }
     }
 
@@ -300,7 +299,7 @@ class MainActivity : AppCompatActivity(), WeatherContract.View, SharedPreference
                 }
             } else {
                 // User refused, Accra is added as a default
-                presenter.startLoadingData(Constants.Accra_LAT, Constants.Accra_LON)
+                seDefaultLocation()
             }
         }
     }
@@ -367,4 +366,8 @@ class MainActivity : AppCompatActivity(), WeatherContract.View, SharedPreference
         super.onStop()
     }
 
+    private fun seDefaultLocation(){
+        txtSearch.setText(R.string.accra_gh)
+        presenter.startLoadingData(Constants.Accra_LAT, Constants.Accra_LON)
+    }
 }
