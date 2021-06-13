@@ -53,6 +53,7 @@
                         android:id="@+id/btnSearch"
                         android:layout_width="72dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
                         android:gravity="end"
                         android:textSize="18sp"
                         android:text="@string/go"
