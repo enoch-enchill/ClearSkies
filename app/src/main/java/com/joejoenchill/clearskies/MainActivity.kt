@@ -55,6 +55,7 @@ class MainActivity : AppCompatActivity(), WeatherContract.View, SharedPreference
     private lateinit var swipeRefresh: SwipeRefreshLayout
     private lateinit var infoNoInternet: MaterialCardView
     private lateinit var txtNoInternet: TextView
+    private lateinit var txtLocation: TextView
 
     private lateinit var presenter: WeatherPresenter
 
@@ -89,6 +90,7 @@ class MainActivity : AppCompatActivity(), WeatherContract.View, SharedPreference
 
         infoNoInternet = findViewById(R.id.infoNoInternet)
         txtNoInternet = findViewById(R.id.txtNoInternet)
+        txtLocation = findViewById(R.id.txtLocation)
 
         loadWeatherData()
 
@@ -117,6 +119,8 @@ class MainActivity : AppCompatActivity(), WeatherContract.View, SharedPreference
         fragSearch.setOnPlaceSelectedListener(object : PlaceSelectionListener {
             override fun onPlaceSelected(place: Place) {
                 swipeRefresh.isRefreshing = true
+
+                txtLocation.text = place.name
                 LocationStorage.setLoc(this@MainActivity,  Location(place.latLng?.latitude.toString(), place.latLng?.longitude.toString()))
                 Log.i(logTag, "Place: ${place.name}, ${place.latLng}")
                 loadWeatherData()

@@ -43,7 +43,7 @@
                         <fragment android:id="@+id/search_fragment"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:minHeight="48dp"
+                            android:minHeight="44dp"
                             android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
                             />
 
@@ -61,17 +61,27 @@
 
                 </LinearLayout>
 
+                <TextView
+                    android:id="@+id/txtLocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/searchBox"
+                    android:textColor="@color/black"
+                    android:textSize="22sp"
+                    android:text="@string/accra_ghana"
+                    android:gravity="center"/>
+
 
                 <include
                     android:id="@+id/container_forecast"
                     layout="@layout/today_weather"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/searchBox"
+                    android:layout_below="@id/txtLocation"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginBottom="30dp" />
+                    android:layout_marginTop="26dp"
+                    android:layout_marginBottom="26dp" />
 
                 <TextView
                     android:id="@+id/textViewForecastHeader"
@@ -88,7 +98,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/textViewForecastHeader"
-                    android:layout_margin="8dp"
                     android:orientation="horizontal"
                     tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/daily_item" />
