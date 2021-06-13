@@ -159,6 +159,7 @@ class MainActivity : AppCompatActivity(), WeatherContract.View, SharedPreference
             Toast.makeText(this, "No Internet connection", Toast.LENGTH_LONG).show()
             infoNoInternet.visibility = View.VISIBLE
             txtNoInternet.text = getString(R.string.no_internet_connection)
+            swipeRefresh.isRefreshing = false
         }
     }
 
@@ -391,7 +392,7 @@ class MainActivity : AppCompatActivity(), WeatherContract.View, SharedPreference
     }
 
     private fun seDefaultLocation(){
-        //txtSearch.setText(R.string.accra_gh)
         presenter.startLoadingData(Constants.ACCRA_LAT, Constants.ACCRA_LON)
+        swipeRefresh.isRefreshing = false
     }
 }
