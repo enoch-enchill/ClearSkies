@@ -66,7 +66,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/searchBox"
-                    android:textColor="@color/black"
+                    android:textColor="@color/grey_800"
                     android:textSize="22sp"
                     android:text="@string/accra_ghana"
                     android:gravity="center"/>
@@ -90,7 +90,7 @@
                     android:layout_below="@id/container_forecast"
                     android:layout_marginStart="16dp"
                     android:text="@string/next_7_days"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="16sp" />
 
                 <androidx.recyclerview.widget.RecyclerView
