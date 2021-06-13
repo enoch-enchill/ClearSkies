@@ -7,43 +7,46 @@ import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.location.LocationManager
 import android.net.ConnectivityManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.location.LocationManagerCompat
-import androidx.core.text.set
 import androidx.preference.PreferenceManager
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import coil.load
+import com.google.android.gms.common.api.Status
+import com.google.android.libraries.places.api.Places
+import com.google.android.libraries.places.api.model.Place
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
+
 import com.google.android.material.card.MaterialCardView
 import com.joejoenchill.clearskies.adapters.DailyAdapter
+import com.joejoenchill.clearskies.location.Location
 import com.joejoenchill.clearskies.location.LocationCallback
 import com.joejoenchill.clearskies.location.LocationService
 import com.joejoenchill.clearskies.location.LocationStorage
 import com.joejoenchill.clearskies.models.DailyItem
 import com.joejoenchill.clearskies.models.WeatherResponse
 import com.joejoenchill.clearskies.utils.Constants
-import com.joejoenchill.clearskies.utils.DataStorage.Companion.setDataStatus
 import com.joejoenchill.clearskies.utils.DataStorage.Companion.isDataReceived
+import com.joejoenchill.clearskies.utils.DataStorage.Companion.setDataStatus
 import com.joejoenchill.clearskies.utils.Network
 import com.joejoenchill.clearskies.utils.NetworkChangeReceiver
 import com.joejoenchill.clearskies.utils.OnNetworkListener
 import com.joejoenchill.clearskies.weather.WeatherContract
 import com.joejoenchill.clearskies.weather.WeatherPresenter
-import com.squareup.picasso.Callback
-import com.squareup.picasso.Picasso
 
 
 class MainActivity : AppCompatActivity(), WeatherContract.View, SharedPreferences.OnSharedPreferenceChangeListener,
@@ -52,7 +55,6 @@ class MainActivity : AppCompatActivity(), WeatherContract.View, SharedPreference
     private lateinit var swipeRefresh: SwipeRefreshLayout
     private lateinit var infoNoInternet: MaterialCardView
     private lateinit var txtNoInternet: TextView
-    private lateinit var txtSearch: EditText
 
     private lateinit var presenter: WeatherPresenter
 
@@ -84,7 +86,6 @@ class MainActivity : AppCompatActivity(), WeatherContract.View, SharedPreference
         presenter = WeatherPresenter(this)
 
         swipeRefresh =  findViewById(R.id.swipeRefresh)
-        txtSearch =  findViewById(R.id.txtSearch)
 
         infoNoInternet = findViewById(R.id.infoNoInternet)
         txtNoInternet = findViewById(R.id.txtNoInternet)
@@ -96,6 +97,35 @@ class MainActivity : AppCompatActivity(), WeatherContract.View, SharedPreference
         // Register the listener
         PreferenceManager.getDefaultSharedPreferences(this)
             .registerOnSharedPreferenceChangeListener(this)
+
+
+        // Google Places Search
+        // Initialize the SDK
+        if(!Places.isInitialized()) {
+            Places.initialize(applicationContext, Constants.GOOLE_API_KEY)
+        }
+
+        // Create a new PlacesClient instance
+        val placesClient = Places.createClient(this)
+
+        val fragSearch =
+            supportFragmentManager.findFragmentById(R.id.search_fragment)
+                    as AutocompleteSupportFragment
+        fragSearch.setPlaceFields(listOf(Place.Field.NAME, Place.Field.LAT_LNG))
+
+        // Set up a PlaceSelectionListener to handle the response.
+        fragSearch.setOnPlaceSelectedListener(object : PlaceSelectionListener {
+            override fun onPlaceSelected(place: Place) {
+                swipeRefresh.isRefreshing = true
+                LocationStorage.setLoc(this@MainActivity,  Location(place.latLng?.latitude.toString(), place.latLng?.longitude.toString()))
+                Log.i(logTag, "Place: ${place.name}, ${place.latLng}")
+                loadWeatherData()
+            }
+
+            override fun onError(status: Status) {
+                Log.i(logTag, "An error occurred: $status")
+            }
+        })
 
 
         /*
@@ -135,18 +165,8 @@ class MainActivity : AppCompatActivity(), WeatherContract.View, SharedPreference
 
             // Weather Icon
             val imgWeatherIcon = findViewById<ImageView>(R.id.imgWeatherIcon)
-            val imageUrl: String = getString(R.string.icon_2, todayWeather.weather[0].icon)
-            Picasso.get()
-                .load(imageUrl)
-                .into(imgWeatherIcon, object : Callback {
-                    override fun onSuccess() {
-                        Log.d("icon", "success")
-                    }
-
-                    override fun onError(e: Exception?) {
-                        Log.d("icon", "error: $imageUrl")
-                    }
-                })
+            val imageUrl: String = getString(R.string.icon_4, todayWeather.weather[0].icon)
+            imgWeatherIcon.load(imageUrl)
 
             // Temperature
             val txtTemperature = findViewById<TextView>(R.id.txtTemperature)
@@ -367,7 +387,7 @@ class MainActivity : AppCompatActivity(), WeatherContract.View, SharedPreference
     }
 
     private fun seDefaultLocation(){
-        txtSearch.setText(R.string.accra_gh)
-        presenter.startLoadingData(Constants.Accra_LAT, Constants.Accra_LON)
+        //txtSearch.setText(R.string.accra_gh)
+        presenter.startLoadingData(Constants.ACCRA_LAT, Constants.ACCRA_LON)
     }
 }

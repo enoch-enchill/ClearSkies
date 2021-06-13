@@ -1,18 +1,16 @@
 package com.joejoenchill.clearskies.adapters
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.joejoenchill.clearskies.R
 import com.joejoenchill.clearskies.models.DailyItem
 import com.joejoenchill.clearskies.utils.TimeConverter
-import com.squareup.picasso.Callback
-import com.squareup.picasso.Picasso
 
 
 class DailyAdapter(private val dailyDataList: List<DailyItem>, private val context: Context) : RecyclerView.Adapter<DailyAdapter.DailyHolder>() {
@@ -36,19 +34,7 @@ class DailyAdapter(private val dailyDataList: List<DailyItem>, private val conte
 
         // Icon
         val imageUrl: String = context.getString(R.string.icon, dailyDataItem.weather[0].icon)
-        Picasso.get()
-            .load(imageUrl)
-            .into(holder.imgIcon, object : Callback {
-                override fun onSuccess() {
-                    Log.d("icon", "success")
-                }
-
-                override fun onError(e: Exception?) {
-                    if (e != null) {
-                        Log.d("icon", "error: $imageUrl")
-                    }
-                }
-            })
+        holder.imgIcon.load(imageUrl)
 
         // Temperature
         val valTemp: String = context.getString(R.string.temperature,dailyDataItem.temp.day.toInt())

@@ -17,7 +17,7 @@
     <string name="humidity">%d %%</string>
     <string name="temperature">%d\u00b0</string>
     <string name="icon">http://openweathermap.org/img/wn/%s.png</string>
-    <string name="icon_2">http://openweathermap.org/img/wn/%s@2x.png</string>
+    <string name="icon_4">http://openweathermap.org/img/wn/%s@4x.png</string>
 
     <string name="location_hint">Enter your location detail</string>
     <string name="go">Go!</string>

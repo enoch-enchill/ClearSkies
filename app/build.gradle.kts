@@ -48,14 +48,16 @@ dependencies {
     // Retrofit
     implementation ("com.squareup.retrofit2:retrofit:2.7.2")
     implementation ("com.squareup.retrofit2:converter-gson:2.4.0")
-    // Picasso
-    implementation ("com.squareup.picasso:picasso:2.71828")
+    // Coil
+    implementation("io.coil-kt:coil:1.2.2")
     // Preferences
     implementation ("androidx.preference:preference-ktx:1.1.1")
-    // Shadow
-    implementation ("com.loopeer.lib:shadow:0.0.3")
+    // Search
+    implementation ("com.algolia:algoliasearch-android:3.27.0")
     // SwipeRefresh
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+    // Google Places
+    implementation("com.google.android.libraries.places:places:2.4.0")
     // Test
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.2")

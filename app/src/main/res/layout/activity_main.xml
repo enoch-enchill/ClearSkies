@@ -26,36 +26,41 @@
                     android:id="@+id/searchBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
                     android:layout_marginTop="16dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
+                    android:layout_centerHorizontal="true"
                     android:orientation="horizontal">
 
-                    <EditText
-                        android:id="@+id/txtSearch"
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_view"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:autofillHints="@string/location_hint"
-                        android:hint="@string/location_hint"
-                        android:inputType="text|textAutoComplete|textAutoCorrect"
-                        android:minHeight="52dp"
-                        tools:ignore="TextContrastCheck" />
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="4dp">
+
+                        <fragment android:id="@+id/search_fragment"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="48dp"
+                            android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+                            />
+
+                    </androidx.cardview.widget.CardView>
 
                     <Button
                         android:id="@+id/btnSearch"
-                        android:layout_width="60dp"
+                        android:layout_width="72dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="-6dp"
                         android:gravity="end"
-                        android:textSize="14sp"
+                        android:textSize="18sp"
                         android:text="@string/go"
                         android:textColor="@color/white"
-                        tools:ignore="TouchTargetSizeCheck"
                         style="@style/RoundedButton"/>
 
                 </LinearLayout>
+
 
                 <include
                     android:id="@+id/container_forecast"

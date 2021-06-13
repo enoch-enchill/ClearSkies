@@ -6,7 +6,9 @@ class Constants {
         const val UNIT_NAME = "imperial"
         const val EXCLUDE = "current,minutely,hourly,alerts"
 
-        const val Accra_LAT = 5.5913754
-        const val Accra_LON = -0.2497702
+        const val ACCRA_LAT = 5.5913754
+        const val ACCRA_LON = -0.2497702
+
+        const val GOOLE_API_KEY = "AIzaSyBOc3fMdZxEffw_x6ohklf7EQGWm1iR7dw"
     }
 }
